@@ -1,0 +1,2 @@
+# typescript_video_player
+使用typescript写一个视频播放器组件
