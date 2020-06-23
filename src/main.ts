@@ -12,10 +12,11 @@ for (let i = 0; i < listItem.length; i++) {
     //console.log(url, title);
 
     popup({
-      width: '880px',
-      height: '556px',
+      width: '780px',
+      height: '456px',
       title: title,
-      pos: 'right'
+      pos: 'center',
+      mask: true
     });
 
 
