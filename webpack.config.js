@@ -18,6 +18,9 @@ module.exports = {
     rules: [{
       test: /\.css$/,
       use: ['style-loader', 'css-loader']
+    }, {
+      test: /\.(eot|woff2|woff|ttf|svg)$/,
+      use: ['file-loader']
     }]
   },
   plugins: [
