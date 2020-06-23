@@ -16,7 +16,10 @@ for (let i = 0; i < listItem.length; i++) {
       height: '456px',
       title: title,
       pos: 'center',
-      mask: true
+      mask: true,
+      content(elem) {
+        console.log(elem);
+      }
     });
 
 

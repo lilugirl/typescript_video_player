@@ -7,7 +7,7 @@ interface Ipopup {
   title?: string;
   pos?: string;
   mask?: boolean;
-  content?: () => void;
+  content?: (content: HTMLElement) => void;
 }
 
 interface Icomponent {
@@ -39,6 +39,8 @@ class Popup implements Icomponent {
   init() {
     this.template();
     this.settings.mask && this.createMask();
+    this.handle();
+    this.contentCallback();
   }
 
   // 创建模版
@@ -72,7 +74,14 @@ class Popup implements Icomponent {
 
 
   // 事件操作
-  handle() { }
+  handle() {
+    let popupClose = this.tempContainer.querySelector(`.${styles['popup-title']} i`);
+    popupClose.addEventListener('click', () => {
+      document.body.removeChild(this.tempContainer);
+      this.settings.mask && document.body.removeChild(this.mask);
+
+    });
+  }
 
   createMask() {
     this.mask = document.createElement('div');
@@ -81,6 +90,11 @@ class Popup implements Icomponent {
     this.mask.style.height = document.body.offsetHeight + 'px';
     document.body.appendChild(this.mask);
 
+  }
+
+  contentCallback() {
+    let popupContent = this.tempContainer.querySelector(`.${styles['popup-content']}`);
+    this.settings.content(popupContent);
   }
 }
 
