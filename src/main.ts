@@ -11,11 +11,14 @@ for (let i = 0; i < listItem.length; i++) {
     let title = this.dataset.title;
     //console.log(url, title);
 
+    popup({
+      width: '880px',
+      height: '556px',
+      title: title,
+      pos: 'right'
+    });
 
 
   })
 }
 
-popup({});
-popup({});
-popup({});

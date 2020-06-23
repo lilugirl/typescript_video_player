@@ -1,5 +1,30 @@
 .popup {
-  background: red;
+  position: fixed;
+  z-index: 20;
+  border: 1px gray solid;
 }
 
 .popupTitle {}
+
+.popup-title {
+  height: 60px;
+  background: #f5f5f5;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.popup-title h3 {
+  font-size: 18px;
+  margin-left: 20px;
+}
+
+.popup-title i {
+  font-size: 18px;
+  margin-right: 20px;
+}
+
+.popup-content {
+  height: calc(100% - 60px);
+  background: white;
+}
