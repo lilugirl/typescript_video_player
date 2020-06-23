@@ -10,6 +10,10 @@ module.exports = {
     path: path.resolve(__dirname, 'dist'),
     filename: "main.js"
   },
+  devServer: {
+    contentBase: "/dist",
+    open: true
+  },
   module: {
     rules: [{
       test: /\.css$/,
@@ -22,5 +26,6 @@ module.exports = {
     }),
     new CleanWebpackPlugin()
   ],
-  mode: "development"
+  mode: "development",
+  devtool: "inline-source-map"
 }
