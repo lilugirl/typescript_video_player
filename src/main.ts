@@ -1,6 +1,7 @@
 
 import './main.css';
 import popup from './components/popup/popup';
+import video from './components/video/video';
 
 
 let listItem = document.querySelectorAll('#list li');
@@ -19,6 +20,10 @@ for (let i = 0; i < listItem.length; i++) {
       mask: true,
       content(elem) {
         console.log(elem);
+        video({
+          url,
+          elem
+        })
       }
     });
 
