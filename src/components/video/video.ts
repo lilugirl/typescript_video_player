@@ -48,8 +48,8 @@ class Video implements Icomponent {
     <div class="${styles['video-controls']}">
        <div class="${styles['video-progress']}">
           <div class="${styles['video-progress-now']}"></div>
-          <div class="${styles['video-progress-suc']}></div>
-          <div class="${styles['video-progree-bar']}></div>
+          <div class="${styles['video-progress-suc']}"></div>
+          <div class="${styles['video-progress-bar']}"></div>
        </div>
 
        <div class="${styles['video-play']}">
@@ -64,7 +64,7 @@ class Video implements Icomponent {
          <i class="iconfont iconfullscreen_4_3"></i>
        </div>
 
-       <div class="${styles['video-volume']}>
+       <div class="${styles['video-volume']}">
          <i class="iconfont iconvolume_up"></i>
          <div class="${styles['video-volprogress']}">
            <div class="${styles['video-volprogress-now']}"></div>

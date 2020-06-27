@@ -1,27 +1,131 @@
-.video {}
+.video {
+  position: relative;
+}
 
-.video-content {}
+.video-content {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
 
-.video-controls {}
+.video-controls {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 50px;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.8)
+}
 
-.video-progress {}
+.video-progress {
+  height: 5px;
+  background: #222223;
+  position: relative;
+}
 
-.video-progress-now {}
+.video-progress-now {
+  width: 50%;
+  height: 100%;
+  background: #ff6a03;
+  position: absolute;
+  left: 0;
+  z-index: 1;
 
-.video-progress-suc {}
+}
 
-.video-progress-bar {}
+.video-progress-suc {
+  width: 70%;
+  height: 100%;
+  background: #666;
+  position: absolute;
+  left: 0;
 
-.video-play {}
+}
 
-.video-time {}
+.video-progress-bar {
+  width: 14px;
+  height: 14px;
+  background: white;
+  border-radius: 50%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  margin-left: -7px;
+  margin-top: -4px;
+  z-index: 2;
+}
 
-.video-full {}
+.video-play {
+  float: left;
+  height: 45px;
+  line-height: 45px;
 
-.video-volume {}
+}
 
-.video-volprogress {}
+.video-play i {
+  font-size: 30px;
+  color: white;
 
-.video-volprogress-now {}
+}
 
-.video-volprogress-bar {}
+.video-time {
+  float: left;
+  height: 45px;
+  line-height: 45px;
+  margin-left: 30px;
+  color: white;
+}
+
+.video-full {
+  float: right;
+  height: 45px;
+  line-height: 45px;
+  margin-right: 20px;
+
+}
+
+.video-full i {
+  font-size: 20px;
+  color: white;
+}
+
+.video-volume {
+  float: right;
+  display: flex;
+  align-items: center;
+  margin-right: 30px;
+  height: 45px;
+}
+
+.video-volume i {
+  font-size: 20px;
+  margin-right: 20px;
+  color: white;
+
+}
+
+.video-volprogress {
+  width: 100px;
+  height: 5px;
+  background: #222223;
+  position: relative;
+
+}
+
+.video-volprogress-now {
+  width: 50%;
+  height: 100%;
+  background: #ff6a03;
+}
+
+.video-volprogress-bar {
+  height: 14px;
+  width: 14px;
+  background: white;
+  border-radius: 50%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  margin-left: -7px;
+  margin-top: -4px;
+}
