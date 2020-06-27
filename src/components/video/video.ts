@@ -84,10 +84,11 @@ class Video implements Icomponent {
 
   }
   handle() {
-    let videoContent = this.tempContainer.querySelector(`.${styles['video-content']}`);
+    let videoContent: HTMLVideoElement = this.tempContainer.querySelector(`.${styles['video-content']}`);
     let videoControls = this.tempContainer.querySelector(`.${styles['vidoe-controls']}`);
     let videoPlay = this.tempContainer.querySelector(`.${styles['video-play']} i`);
     let videoTimes = this.tempContainer.querySelectorAll(`.${styles['video-time']} span`);
+    let videoFull = this.tempContainer.querySelector(`.${styles['video-full']} i`);
     let timer;
 
     // 视频是否加载完毕
@@ -116,6 +117,11 @@ class Video implements Icomponent {
         videoContent.pause();
       }
     });
+
+    // 全屏
+    videoFull.addEventListener('click', () => {
+      videoContent.requestFullscreen();
+    })
 
     function playing() {
       // 正在播放中
