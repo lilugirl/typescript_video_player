@@ -87,21 +87,26 @@ class Video implements Icomponent {
     let videoContent = this.tempContainer.querySelector(`.${styles['video-content']}`);
     let videoControls = this.tempContainer.querySelector(`.${styles['vidoe-controls']}`);
     let videoPlay = this.tempContainer.querySelector(`.${styles['video-play']} i`);
+    let videoTimes = this.tempContainer.querySelectorAll(`.${styles['video-time']} span`);
+    let timer;
 
     // 视频是否加载完毕
     videoContent.addEventListener('canplay', () => {
-      console.log('can paly');
+      // console.log('can paly');
+      videoTimes[1].innerHTML = formatTime(videoContent.duration);
     });
 
 
     // 视频播放事件
     videoContent.addEventListener('play', () => {
       videoPlay.className = 'iconfont iconpause';
+      timer = setInterval(playing, 1000)
     });
 
     // 视频暂停事件
     videoContent.addEventListener('pause', () => {
       videoPlay.className = 'iconfont iconplay_outlined';
+      clearInterval(timer);
     });
 
     videoPlay.addEventListener('click', () => {
@@ -110,7 +115,27 @@ class Video implements Icomponent {
       } else {
         videoContent.pause();
       }
-    })
+    });
+
+    function playing() {
+      // 正在播放中
+      videoTimes[0].innerHTML = formatTime(videoContent.currentTime);
+    }
+
+    function formatTime(number: number): string {
+      number = Math.round(number);
+      let min = Math.floor(number / 60);
+      let sec = number % 60;
+      return setZero(min) + ':' + setZero(sec)
+    }
+
+    function setZero(number: number): string {
+      if (number < 10) {
+        return '0' + number;
+      } else {
+        return '' + number;
+      }
+    }
 
 
   }
