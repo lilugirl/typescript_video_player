@@ -85,7 +85,7 @@ class Video implements Icomponent {
   }
   handle() {
     let videoContent: HTMLVideoElement = this.tempContainer.querySelector(`.${styles['video-content']}`);
-    let videoControls = this.tempContainer.querySelector(`.${styles['vidoe-controls']}`);
+    let videoControls = this.tempContainer.querySelector(`.${styles['video-controls']}`);
     let videoPlay = this.tempContainer.querySelector(`.${styles['video-play']} i`);
     let videoTimes = this.tempContainer.querySelectorAll(`.${styles['video-time']} span`);
     let videoFull = this.tempContainer.querySelector(`.${styles['video-full']} i`);
@@ -95,6 +95,20 @@ class Video implements Icomponent {
     let timer;
 
     videoContent.volume = 0.5;
+
+    // 是否进行自动播放
+    if (this.settings.autoplay) {
+      timer = setInterval(playing, 1000);
+      videoContent.play();
+    }
+
+    this.tempContainer.addEventListener('mouseenter', function () {
+      videoControls.style.bottom = 0;
+    });
+
+    this.tempContainer.addEventListener('mouseleave', function () {
+      videoControls.style.bottom = '-50px';
+    });
 
     // 视频是否加载完毕
     videoContent.addEventListener('canplay', () => {

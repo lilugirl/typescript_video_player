@@ -22,7 +22,8 @@ for (let i = 0; i < listItem.length; i++) {
         console.log(elem);
         video({
           url,
-          elem
+          elem,
+          autoplay: true
         })
       }
     });
