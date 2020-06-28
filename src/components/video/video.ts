@@ -90,8 +90,11 @@ class Video implements Icomponent {
     let videoTimes = this.tempContainer.querySelectorAll(`.${styles['video-time']} span`);
     let videoFull = this.tempContainer.querySelector(`.${styles['video-full']} i`);
     let videoProgress = this.tempContainer.querySelectorAll(`.${styles['video-progress']} div`);
-    console.log('videoProgress', videoProgress);
+    let videoVolProgress = this.tempContainer.querySelectorAll(`.${styles['video-volprogress']} div`);
+    console.log('videoVolProgress', videoVolProgress);
     let timer;
+
+    videoContent.volume = 0.5;
 
     // 视频是否加载完毕
     videoContent.addEventListener('canplay', () => {
@@ -124,6 +127,53 @@ class Video implements Icomponent {
     // 全屏
     videoFull.addEventListener('click', () => {
       videoContent.requestFullscreen();
+    });
+
+    videoProgress[2].addEventListener('mousedown', function (ev: MouseEvent) {
+      let downX = ev.pageX;
+      let downL = this.offsetLeft;
+      document.onmousemove = (ev: MouseEvent) => {
+
+        let scale = (ev.pageX - downX + downL + 8) / this.parentNode.offsetWidth;
+        if (scale < 0) {
+          scale = 0;
+        } else if (scale > 1) {
+          scale = 1;
+        }
+        videoProgress[0].style.width = scale * 100 + '%';
+        videoProgress[1].style.width = scale * 100 + '%';
+        this.style.left = scale * 100 + '%';
+        videoContent.currentTime = scale * videoContent.duration;
+      }
+
+      document.onmouseup = () => {
+        document.onmousemove = document.onmouseup = null;
+      };
+
+      ev.preventDefault();
+    });
+
+    videoVolProgress[1].addEventListener('mousedown', function (ev: MouseEvent) {
+      let downX = ev.pageX;
+      let downL = this.offsetLeft;
+
+      document.onmousemove = (ev: MouseEvent) => {
+        let scale = (ev.pageX - downX + downL + 8) / this.parentNode.offsetWidth;
+        if (scale < 0) {
+          scale = 0;
+        } else if (scale > 1) {
+          scale = 1;
+        }
+
+        videoVolProgress[0].style.width = scale * 100 + '%';
+        this.style.left = scale * 100 + '%';
+        videoContent.volume = scale;
+      }
+
+      document.onmouseup = () => {
+        document.onmousemove = document.onmouseup = null;
+      };
+      ev.preventDefault();
     })
 
     function playing() {
