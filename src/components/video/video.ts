@@ -89,6 +89,8 @@ class Video implements Icomponent {
     let videoPlay = this.tempContainer.querySelector(`.${styles['video-play']} i`);
     let videoTimes = this.tempContainer.querySelectorAll(`.${styles['video-time']} span`);
     let videoFull = this.tempContainer.querySelector(`.${styles['video-full']} i`);
+    let videoProgress = this.tempContainer.querySelectorAll(`.${styles['video-progress']} div`);
+    console.log('videoProgress', videoProgress);
     let timer;
 
     // 视频是否加载完毕
@@ -101,7 +103,8 @@ class Video implements Icomponent {
     // 视频播放事件
     videoContent.addEventListener('play', () => {
       videoPlay.className = 'iconfont iconpause';
-      timer = setInterval(playing, 1000)
+      timer = setInterval(playing, 1000);
+
     });
 
     // 视频暂停事件
@@ -125,7 +128,12 @@ class Video implements Icomponent {
 
     function playing() {
       // 正在播放中
+      let scale = videoContent.currentTime / videoContent.duration;
+      let scaleSuc = videoContent.buffered.end(0) / videoContent.duration;
       videoTimes[0].innerHTML = formatTime(videoContent.currentTime);
+      videoProgress[0].style.width = scale * 100 + '%';
+      videoProgress[1].style.width = scaleSuc * 100 + '%';
+      videoProgress[2].style.left = scale * 100 + '%';
     }
 
     function formatTime(number: number): string {
